@@ -24,7 +24,18 @@ class TestRectangularComponentGenerator(unittest.TestCase):
         self.assertEqual(generated_symbol.designator.designator, "U?")
         self.assertEqual(generated_symbol.part_number.text, "Test Part Name")
         self.assertEqual(len(generated_symbol.pins), 4)
+
         self.assertEqual(generated_symbol.pins[0].name, 'la')
         self.assertEqual(generated_symbol.pins[1].name, 'ba')
         self.assertEqual(generated_symbol.pins[2].name, 'da')
         self.assertEqual(generated_symbol.pins[3].name, 'cc')
+
+        self.assertEqual(generated_symbol.pins[0].number, 1)
+        self.assertEqual(generated_symbol.pins[1].number, 2)
+        self.assertEqual(generated_symbol.pins[2].number, 3)
+        self.assertEqual(generated_symbol.pins[3].number, 4)
+
+        self.assertEqual(generated_symbol.pins[0].function, 'In')
+        self.assertEqual(generated_symbol.pins[1].function, 'InAnalog')
+        self.assertEqual(generated_symbol.pins[2].function, 'InDigital')
+        self.assertEqual(generated_symbol.pins[3].function, 'Out')
