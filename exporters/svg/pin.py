@@ -4,52 +4,18 @@ pin_spacing = 50
 pin_font_size = 40
 pin_desc_spacing = 15
 
+in_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
+in_arrow.append(svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
-def generate_pin(pin_dict):
-    group = svg.Group()
-    if 'r' not in pin_dict or pin_dict['r'] == 0:
-        pin_end = pin_dict['x'] + pin_dict['l']
-        group.append(svg.Line(pin_dict['x'],
-                              pin_dict['y'],
-                              pin_end,
-                              pin_dict['y'],
-                              stroke_width=5,
-                              stroke='black'))
-        if 'desig' in pin_dict:
-            group.append(svg.Text(pin_dict['desig'],
-                                  pin_font_size,
-                                  pin_end + pin_desc_spacing,
-                                  pin_dict['y'] + pin_font_size / 4))
-        if 'no' in pin_dict:
-            if isinstance(pin_dict['no'], list) and len(pin_dict['no']) == 1:
-                pin_no_str = str(pin_dict['no'][0])
-            else:
-                pin_no_str = str(pin_dict['no'])
-            group.append(svg.Text(pin_no_str,
-                                  pin_font_size,
-                                  pin_end - 40,
-                                  pin_dict['y'] - 5,
-                                  text_anchor='end'))
-    elif pin_dict['r'] == 180:
-        pin_end = pin_dict['x'] - pin_dict['l']
-        group.append(svg.Line(pin_dict['x'] - pin_dict['l'],
-                              pin_dict['y'],
-                              pin_dict['x'],
-                              pin_dict['y'],
-                              stroke_width=5,
-                              stroke='black'))
-        if 'desig' in pin_dict:
-            group.append(svg.Text(pin_dict['desig'],
-                                  pin_font_size,
-                                  pin_end - pin_desc_spacing,
-                                  pin_dict['y'] + pin_font_size / 4,
-                                  text_anchor='end'))
-        if 'no' in pin_dict:
-            group.append(svg.Text(str(pin_dict['no']),
-                                  pin_font_size,
-                                  pin_end + 40,
-                                  pin_dict['y'] - 5))
-    return group
+out_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
+out_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+
+marker_map = {"In": in_arrow,
+              "InAnalog": in_arrow,
+              "InDigital": in_arrow,
+              "Out": out_arrow,
+              "OutAnalog": out_arrow,
+              "OutDigital": out_arrow}
 
 
 def generate_symbol_pin(pin):
@@ -61,7 +27,8 @@ def generate_symbol_pin(pin):
                               pin_end,
                               pin.y,
                               stroke_width=5,
-                              stroke='black'))
+                              stroke='black',
+                              marker_end=marker_map[pin.function]))
         if pin.name:
             group.append(svg.Text(pin.name,
                                   pin_font_size,
@@ -79,12 +46,13 @@ def generate_symbol_pin(pin):
                                   text_anchor='end'))
     elif pin.rotation == 180:
         pin_end = pin.x - pin.length
-        group.append(svg.Line(pin.x - pin.length,
+        group.append(svg.Line(pin.x ,
                               pin.y,
-                              pin.x,
+                              pin.x- pin.length,
                               pin.y,
                               stroke_width=5,
-                              stroke='black'))
+                              stroke='black',
+                              marker_end=marker_map[pin.function]))
         if pin.name:
             group.append(svg.Text(pin.name,
                                   pin_font_size,

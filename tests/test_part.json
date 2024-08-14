@@ -5,14 +5,15 @@
 		"manufacturer": "test_manufacturer",
 		"pins": {
 			"la": {"no": 1, "func":  "In", "desc": "ddl"},
-			"ba": {"no": 2, "func":  "In", "desc": "ddl"},
-			"da": {"no": 3, "func":  "In", "desc": "ddl"},
-			"cc": {"no": 4, "func":  "In", "desc": "ddl"}},
+			"ba": {"no": 2, "func":  "In-Analog", "desc": "ddl"},
+			"da": {"no": 3, "func":  "In-Digital", "desc": "ddl"},
+			"cc": {"no": 4, "func":  "Out", "desc": "ddl"}},
 		"symbol_generator": {
 			"rectangle": {
 				"left_side": ["la", "ba", "da"],
 				"right_side": ["cc"]
-			}
+			},
+			"default": {}
 		}
 	}
 ]
