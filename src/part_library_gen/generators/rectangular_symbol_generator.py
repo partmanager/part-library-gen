@@ -1,8 +1,8 @@
-from generators.components.designator import Designator
-from generators.components.part_number import PartNumber
-from generators.components.pin import Pin
-from generators.components.rectangle import Rectangle
-from generators.components.symbol import Symbol
+from .components.designator import Designator
+from .components.part_number import PartNumber
+from .components.pin import Pin
+from .components.rectangle import Rectangle
+from .components.symbol import Symbol
 
 
 pin_spacing = 50

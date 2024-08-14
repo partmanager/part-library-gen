@@ -5,8 +5,8 @@
 		"manufacturer": "test_manufacturer",
 		"pins": {
 			"la": {"no": 1, "func":  "In", "desc": "ddl"},
-			"ba": {"no": 2, "func":  "In-Analog", "desc": "ddl"},
-			"da": {"no": 3, "func":  "In-Digital", "desc": "ddl"},
+			"ba": {"no": 2, "func":  "InAnalog", "desc": "ddl"},
+			"da": {"no": 3, "func":  "InDigital", "desc": "ddl"},
 			"cc": {"no": 4, "func":  "Out", "desc": "ddl"}},
 		"symbol_generator": {
 			"rectangle": {

@@ -1,6 +1,6 @@
-from generators.rectangular_symbol_generator import rectangular_symbol_generator
-from generators.default_generator import default_generator
-from exporters.svg.svg_exporter import export as svg_exporter
+from .generators.rectangular_symbol_generator import rectangular_symbol_generator
+from .generators.default_generator import default_generator
+from .exporters.svg.svg_exporter import export as svg_exporter
 
 
 def generate_file_name(component_data, generator_name):

@@ -1,7 +1,7 @@
 import json
 
 from pathlib import Path
-from symbol_generator import generate
+from src.part_library_gen.symbol_generator import generate
 
 
 def load_files(directory):
