@@ -7,6 +7,10 @@ pin_desc_spacing = 15
 in_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 in_arrow.append(svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
+in_al_arrow = svg.Marker(-2.1, -0.61, 0, 0.6, scale=4, orient='auto')
+in_al_arrow.append(svg.Circle(-0.5, 0, 0.5, stroke_width=0.1, fill='gray', stroke='black'))
+in_al_arrow.append(svg.Lines(-2, 0.5, -2, -0.5, -1.1, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+
 out_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 out_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
@@ -31,7 +35,7 @@ bidirectional_arrow.append(
 marker_map = {"In": in_arrow,
               "InAnalog": None,
               "InDigital": in_arrow,
-              "InDigital;ActiveLow": in_arrow,
+              "InDigital;ActiveLow": in_al_arrow,
               "InDigital;ActiveHigh": in_arrow,
               "Out": out_arrow,
               "OutAnalog": None,
