@@ -3,7 +3,7 @@ from .generators.default_generator import default_generator
 from .exporters.svg.svg_exporter import export as svg_exporter
 
 supported_pin_functions = ['In', 'Out', 'InAnalog', 'InDigital',
-                           'OutDigital', 'OutAnalog',
+                           'OutDigital', 'OutAnalog', 'OutDigital;OpenDrain',
                            'InOut',
                            'PwrIn', 'PwrOut', 'PwrGND']
 

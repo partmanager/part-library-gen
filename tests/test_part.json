@@ -10,7 +10,8 @@
 			"IO": {"no": 4, "func":  "InOut", "desc": "ddl"},
 			"O": {"no": 5, "func":  "Out", "desc": "ddl"},
 			"OA": {"no": 6, "func":  "OutAnalog", "desc": "ddl"},
-			"OD": {"no": 7, "func":  "OutDigital", "desc": "ddl"}
+			"OD": {"no": 7, "func":  "OutDigital", "desc": "ddl"},
+			"OD-OD": {"no": 8, "func":  "OutDigital;OpenDrain", "desc": "ddl"}
 		},
 		"symbol_generator": {
 			"rectangle": {

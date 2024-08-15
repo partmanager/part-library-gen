@@ -10,16 +10,23 @@ in_arrow.append(svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True,
 out_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 out_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
+out_od_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
+out_od_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+
+
 bidirectional_arrow = svg.Marker(-2.3, -0.61, 0, 0.6, scale=4, orient='auto')
-bidirectional_arrow.append(svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
-bidirectional_arrow.append(svg.Lines(-2.3, 0, -1.3, -0.5, -1.3, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+bidirectional_arrow.append(
+    svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+bidirectional_arrow.append(
+    svg.Lines(-2.3, 0, -1.3, -0.5, -1.3, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
 marker_map = {"In": in_arrow,
-              "InAnalog": in_arrow,
+              "InAnalog": None,
               "InDigital": in_arrow,
               "Out": out_arrow,
-              "OutAnalog": out_arrow,
+              "OutAnalog": None,
               "OutDigital": out_arrow,
+              "OutDigital;OpenDrain": out_od_arrow,
               "InOut": bidirectional_arrow}
 
 
@@ -51,9 +58,9 @@ def generate_symbol_pin(pin):
                                   text_anchor='end'))
     elif pin.rotation == 180:
         pin_end = pin.x - pin.length
-        group.append(svg.Line(pin.x ,
+        group.append(svg.Line(pin.x,
                               pin.y,
-                              pin.x- pin.length,
+                              pin.x - pin.length,
                               pin.y,
                               stroke_width=5,
                               stroke='black',
