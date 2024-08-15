@@ -13,7 +13,6 @@ out_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0.5, stroke_width=0.1, close=True,
 out_od_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 out_od_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
-
 bidirectional_arrow = svg.Marker(-2.3, -0.61, 0, 0.6, scale=4, orient='auto')
 bidirectional_arrow.append(
     svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
@@ -23,11 +22,21 @@ bidirectional_arrow.append(
 marker_map = {"In": in_arrow,
               "InAnalog": None,
               "InDigital": in_arrow,
+              "InDigital;ActiveLow": in_arrow,
+              "InDigital;ActiveHigh": in_arrow,
               "Out": out_arrow,
               "OutAnalog": None,
               "OutDigital": out_arrow,
               "OutDigital;OpenDrain": out_od_arrow,
-              "InOut": bidirectional_arrow}
+              "OutDigital;OpenDrain;ActiveLow": out_od_arrow,
+              "InOut": bidirectional_arrow,
+              "PwrIn": None,
+              "PwrOut": None,
+              "PwrGND": None,
+              "NC": None,
+              "NC-GND": None,
+              "NC-Float": None
+              }
 
 
 def generate_symbol_pin(pin):

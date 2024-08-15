@@ -2,10 +2,11 @@ from .generators.rectangular_symbol_generator import rectangular_symbol_generato
 from .generators.default_generator import default_generator
 from .exporters.svg.svg_exporter import export as svg_exporter
 
-supported_pin_functions = ['In', 'Out', 'InAnalog', 'InDigital',
-                           'OutDigital', 'OutAnalog', 'OutDigital;OpenDrain',
+supported_pin_functions = ['In', 'Out', 'InAnalog', 'InDigital', 'InDigital;ActiveLow', 'InDigital;ActiveHigh'
+                           'OutDigital', 'OutAnalog', 'OutDigital;OpenDrain', 'OutDigital;OpenDrain;ActiveLow',
                            'InOut',
-                           'PwrIn', 'PwrOut', 'PwrGND']
+                           'PwrIn', 'PwrOut', 'PwrGND',
+                           'NC', 'NC-GND', 'NC-Float']
 
 
 def validate(component_data):
