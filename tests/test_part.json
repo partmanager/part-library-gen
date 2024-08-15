@@ -11,7 +11,9 @@
 			"O": {"no": 5, "func":  "Out", "desc": "ddl"},
 			"OA": {"no": 6, "func":  "OutAnalog", "desc": "ddl"},
 			"OD": {"no": 7, "func":  "OutDigital", "desc": "ddl"},
-			"OD-OD": {"no": 8, "func":  "OutDigital;OpenDrain", "desc": "ddl"}
+			"OD-AL": {"no": 8, "func":  "OutDigital;ActiveLow", "desc": "ddl"},
+			"OD-OD": {"no": 9, "func":  "OutDigital;OpenDrain", "desc": "ddl"},
+			"OD-OD-AL": {"no": 9, "func":  "OutDigital;OpenDrain;ActiveLow", "desc": "ddl"}
 		},
 		"symbol_generator": {
 			"rectangle": {

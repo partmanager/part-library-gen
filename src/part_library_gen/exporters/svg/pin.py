@@ -10,8 +10,17 @@ in_arrow.append(svg.Lines(-1, 0.5, -1, -0.5, 0, 0, stroke_width=0.1, close=True,
 out_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 out_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
+out_al_arrow = svg.Marker(-2.1, -0.61, 0, 0.6, scale=4, orient='auto')
+out_al_arrow.append(svg.Circle(-0.5, 0, 0.5, stroke_width=0.1, fill='gray', stroke='black'))
+out_al_arrow.append(
+    svg.Lines(-2.1, 0, -1.1, -0.5, -1.1, 0.5, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+
 out_od_arrow = svg.Marker(-1.5, -0.61, 0, 0.6, scale=4, orient='auto')
 out_od_arrow.append(svg.Lines(-1, 0, 0, -0.5, 0, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
+
+out_od_al_arrow = svg.Marker(-2.1, -0.61, 0, 0.6, scale=4, orient='auto')
+out_od_al_arrow.append(svg.Circle(-0.5, 0, 0.5, stroke_width=0.1, fill='gray', stroke='black'))
+out_od_al_arrow.append(svg.Lines(-2.1, 0, -1.1, -0.5, -1.1, 0, stroke_width=0.1, close=True, fill='gray', stroke='black'))
 
 bidirectional_arrow = svg.Marker(-2.3, -0.61, 0, 0.6, scale=4, orient='auto')
 bidirectional_arrow.append(
@@ -27,8 +36,9 @@ marker_map = {"In": in_arrow,
               "Out": out_arrow,
               "OutAnalog": None,
               "OutDigital": out_arrow,
+              "OutDigital;ActiveLow": out_al_arrow,
               "OutDigital;OpenDrain": out_od_arrow,
-              "OutDigital;OpenDrain;ActiveLow": out_od_arrow,
+              "OutDigital;OpenDrain;ActiveLow": out_od_al_arrow,
               "InOut": bidirectional_arrow,
               "PwrIn": None,
               "PwrOut": None,
@@ -54,7 +64,8 @@ def generate_symbol_pin(pin):
             group.append(svg.Text(pin.name,
                                   pin_font_size,
                                   pin_end + pin_desc_spacing,
-                                  pin.y + pin_font_size / 4))
+                                  pin.y + pin_font_size / 4,
+                                  text_decoration="overline" if "ActiveLow" in pin.function else None))
         if pin.number:
             if isinstance(pin.number, list) and len(pin.number) == 1:
                 pin_no_str = str(pin.number[0])
@@ -79,6 +90,7 @@ def generate_symbol_pin(pin):
                                   pin_font_size,
                                   pin_end - pin_desc_spacing,
                                   pin.y + pin_font_size / 4,
+                                  text_decoration="overline" if "ActiveLow" in pin.function else None,
                                   text_anchor='end'))
         if pin.number:
             if isinstance(pin.number, list) and len(pin.number) == 1:
