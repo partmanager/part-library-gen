@@ -16,8 +16,8 @@ def opamp_generator(component_data, generator_data):
     symbol.width = width + 2 * 100 + 40
     symbol.height = height + 120
 
-    body_x = -width/2
-    body_y = -height/2
+    body_x = -width / 2
+    body_y = -height / 2
     symbol.designator = Designator(designator=component_data['designator'], x=-50, y=body_y - 10)
     symbol.part_number = PartNumber(text=component_data['part'], x=-50, y=body_y + height + 40)
 
@@ -29,7 +29,7 @@ def opamp_generator(component_data, generator_data):
     symbol.add_body(triangle)
     # draw '+' and '-' inside body
     plus1 = Line(x1=10, y1=default_style.pin_spacing, x2=30, y2=default_style.pin_spacing)
-    plus2 = Line(x1=10+10, y1=default_style.pin_spacing+10, x2=10+10, y2=default_style.pin_spacing-10)
+    plus2 = Line(x1=10 + 10, y1=default_style.pin_spacing + 10, x2=10 + 10, y2=default_style.pin_spacing - 10)
     minus = Line(x1=10, y1=default_style.pin_spacing * -1, x2=30, y2=default_style.pin_spacing * -1)
     symbol.add_body(plus1)
     symbol.add_body(plus2)
@@ -75,6 +75,33 @@ def opamp_generator(component_data, generator_data):
                   name_visible=False)
     symbol.add_pin(out_pin)
 
+    if 'pwr_pos' in pins and 'pwr_neg' in pins:
+        # add power pins
+        pwr_pos_pin_dict = component_data['pins'][pins['pwr_pos']]
+        pwr_pos_pin = Pin(name=pins['pwr_pos'],
+                          number=pwr_pos_pin_dict['no'],
+                          function=pwr_pos_pin_dict['func'],
+                          description=pwr_pos_pin_dict["desc"],
+                          x=default_style.pin_spacing,
+                          y=default_style.pin_spacing * -3,
+                          length=default_style.pin_length - 16,
+                          rotation=90,
+                          name_visible=False)
+        symbol.add_pin(pwr_pos_pin)
+
+        # add negative power pin
+        pwr_neg_pin_dict = component_data['pins'][pins['pwr_neg']]
+        pwr_neg_pin = Pin(name=pins['pwr_neg'],
+                          number=pwr_neg_pin_dict['no'],
+                          function=pwr_neg_pin_dict['func'],
+                          description=pwr_neg_pin_dict["desc"],
+                          x=default_style.pin_spacing,
+                          y=default_style.pin_spacing * 3,
+                          length=default_style.pin_length - 16,
+                          rotation=270,
+                          name_visible=False)
+        symbol.add_pin(pwr_neg_pin)
+
     return symbol
 
 
@@ -89,4 +116,9 @@ def find_pins(component_data):
             pins['neg'] = pin
         if pin.startswith('OUT') and 'OutAnalog' in component_data['pins'][pin]['func']:
             pins['out'] = pin
+        if 'PwrIn' in component_data['pins'][pin]['func']:
+            if '+' in pin:
+                pins['pwr_pos'] = pin
+            if '-' in pin:
+                pins['pwr_neg'] = pin
     return pins

@@ -81,6 +81,32 @@ def generate_symbol_pin(pin):
                                   pin_end - 40,
                                   pin.y - 5,
                                   text_anchor='end'))
+    elif pin.rotation == 90:
+        pin_end = pin.y + pin.length
+
+        group.append(svg.Line(pin.x,
+                              pin.y,
+                              pin.x,
+                              pin_end,
+                              stroke_width=5,
+                              stroke='black',
+                              marker_end=marker_map[pin.function]))
+        if pin.name and pin.name_visible:
+            group.append(svg.Text(pin.name,
+                                  pin_font_size,
+                                  pin_end + pin_desc_spacing,
+                                  pin.y + pin_font_size / 4,
+                                  text_decoration="overline" if "ActiveLow" in pin.function else None))
+        if pin.number:
+            if isinstance(pin.number, list) and len(pin.number) == 1:
+                pin_no_str = str(pin.number[0])
+            else:
+                pin_no_str = str(pin.number)
+            group.append(svg.Text(pin_no_str,
+                                  pin_font_size,
+                                  pin.x - 5,
+                                  pin.y + 60,
+                                  text_anchor='end'))
     elif pin.rotation == 180:
         pin_end = pin.x - pin.length
         group.append(svg.Line(pin.x,
@@ -106,4 +132,30 @@ def generate_symbol_pin(pin):
                                   pin_font_size,
                                   pin_end + 40,
                                   pin.y - 5))
+    elif pin.rotation == 270:
+        pin_end = pin.y - pin.length
+
+        group.append(svg.Line(pin.x,
+                              pin_end,
+                              pin.x,
+                              pin.y,
+                              stroke_width=5,
+                              stroke='black',
+                              marker_end=marker_map[pin.function]))
+        if pin.name and pin.name_visible:
+            group.append(svg.Text(pin.name,
+                                  pin_font_size,
+                                  pin_end + pin_desc_spacing,
+                                  pin.y + pin_font_size / 4,
+                                  text_decoration="overline" if "ActiveLow" in pin.function else None))
+        if pin.number:
+            if isinstance(pin.number, list) and len(pin.number) == 1:
+                pin_no_str = str(pin.number[0])
+            else:
+                pin_no_str = str(pin.number)
+            group.append(svg.Text(pin_no_str,
+                                  pin_font_size,
+                                  pin.x - 5,
+                                  pin.y - 40,
+                                  text_anchor='end'))
     return group

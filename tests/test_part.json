@@ -37,5 +37,21 @@
 			"opamp": {},
 			"default": {}
 		}
+	},
+	{
+		"designator": "U?",
+		"part": "OpampPWR",
+		"manufacturer": "test_manufacturer",
+		"pins": {
+			"IN+": {"no": 2, "func":  "InAnalog", "desc": "ddl"},
+			"IN-": {"no": 3, "func":  "InAnalog", "desc": "ddl"},
+			"OUT": {"no": 7, "func":  "OutAnalog", "desc": "ddl"},
+			"V+": {"no": 8, "func":  "PwrIn", "desc": "ddl"},
+			"V-": {"no": 4, "func":  "PwrIn", "desc": "ddl"}
+		},
+		"symbol_generator": {
+			"opamp": {},
+			"default": {}
+		}
 	}
 ]
