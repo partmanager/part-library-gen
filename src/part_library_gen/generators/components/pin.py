@@ -1,7 +1,8 @@
 class Pin:
-    def __init__(self, name, number, function, description: str, x: int, y: int, length: int, rotation: int):
+    def __init__(self, name, number, function, description: str, x: int, y: int, length: int, rotation: int,
+                 name_visible=True):
         self.name = name
-        self.name_visible = True
+        self.name_visible = name_visible
         self.number = number
         self.number_visible = True
         self.function = function

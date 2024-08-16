@@ -57,6 +57,7 @@ def generate_symbol_pin(pin):
     group = svg.Group()
     if pin.rotation == 0:
         pin_end = pin.x + pin.length
+
         group.append(svg.Line(pin.x,
                               pin.y,
                               pin_end,
@@ -64,7 +65,7 @@ def generate_symbol_pin(pin):
                               stroke_width=5,
                               stroke='black',
                               marker_end=marker_map[pin.function]))
-        if pin.name:
+        if pin.name and pin.name_visible:
             group.append(svg.Text(pin.name,
                                   pin_font_size,
                                   pin_end + pin_desc_spacing,
@@ -84,7 +85,7 @@ def generate_symbol_pin(pin):
         pin_end = pin.x - pin.length
         group.append(svg.Line(pin.x,
                               pin.y,
-                              pin.x - pin.length,
+                              pin_end,
                               pin.y,
                               stroke_width=5,
                               stroke='black',
