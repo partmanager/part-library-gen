@@ -1,6 +1,6 @@
 import drawsvg as svg
 from .pin import generate_symbol_pin
-from src.part_library_gen.generators.components.rectangle import Rectangle
+from ...generators.components.rectangle import Rectangle
 
 
 def export(symbol, filename):
