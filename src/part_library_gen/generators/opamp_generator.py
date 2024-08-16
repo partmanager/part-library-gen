@@ -117,8 +117,8 @@ def find_pins(component_data):
         if pin.startswith('OUT') and 'OutAnalog' in component_data['pins'][pin]['func']:
             pins['out'] = pin
         if 'PwrIn' in component_data['pins'][pin]['func']:
-            if '+' in pin:
+            if '+' in pin or pin == 'VCC+':
                 pins['pwr_pos'] = pin
-            if '-' in pin:
+            if '-' in pin or pin == 'GND':
                 pins['pwr_neg'] = pin
     return pins
