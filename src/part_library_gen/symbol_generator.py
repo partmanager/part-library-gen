@@ -34,7 +34,7 @@ def validate(component_data):
 def generate_file_name(component_data, generator_name):
     manufacturer_name = component_data['manufacturer'].replace(' ', '_')
     part = component_data['part'].replace('#', '')
-    return f"symbols/{manufacturer_name}_{part}_{generator_name}"
+    return f"{manufacturer_name}_{part}_{generator_name}"
 
 
 def generate(data):
