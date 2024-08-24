@@ -45,13 +45,18 @@ def generate(data):
     validate(data)
     if 'symbol_generator' not in data:
         symbol = default_generator(data, {})
-        export_symbol(symbol, generate_file_name(data, 'generic'))
+        filename = generate_file_name(data, 'generic')
+        export_symbol(symbol, filename)
+        return symbol, filename
     else:
+        symbols = []
         for generator in data['symbol_generator']:
             generator_data = data['symbol_generator'][generator]
             filename = generate_file_name(data, generator)
             symbol = generator_map[generator](data, generator_data)
             export_symbol(symbol, filename)
+            symbols.append((symbol, filename))
+        return symbols
 
 
 def export_symbol(symbol, filename):
