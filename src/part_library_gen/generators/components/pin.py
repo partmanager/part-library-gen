@@ -12,4 +12,16 @@ class Pin:
         self.length = length
         self.rotation = rotation
 
-
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'name_visible': self.name_visible,
+            'number': self.number,
+            'number_visible': self.number_visible,
+            'function': self.function,
+            'description': self.description,
+            'x': self.x,
+            'y': self.y,
+            'length': self.length,
+            'rotation': self.rotation
+        }

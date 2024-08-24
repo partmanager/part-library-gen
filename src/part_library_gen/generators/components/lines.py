@@ -7,3 +7,10 @@ class Lines:
 
     def add_point(self, x, y):
         self.points.append((x, y))
+
+    def to_dict(self):
+        return {
+            self.x: self.x,
+            self.y: self.y,
+            self.points: self.points
+        }

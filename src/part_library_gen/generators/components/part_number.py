@@ -3,3 +3,10 @@ class PartNumber:
         self.text = text
         self.x = x
         self.y = y
+
+    def to_dict(self):
+        return {
+            'text': self.text,
+            'x': self.x,
+            'y': self.y
+        }

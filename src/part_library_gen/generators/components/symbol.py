@@ -12,3 +12,13 @@ class Symbol:
 
     def add_body(self, element):
         self.body.append(element)
+
+    def to_dict(self):
+        return {
+            'part_number': self.part_number.to_dict(),
+            'designator': self.designator.to_dict(),
+            'pins': [x.to_dict() for x in self.pins],
+            'body': [x.to_dict() for x in self.body],
+            'width': self.width,
+            'height': self.height
+        }
