@@ -7,7 +7,7 @@ from ...generators.components.line import Line
 from ...generators.components.lines import Lines
 
 
-def export(symbol, filename):
+def export(symbol, filename=None):
     d = svg.Drawing(symbol.width, symbol.height, origin='center')
 
     for element in symbol.body:
@@ -43,4 +43,6 @@ def export(symbol, filename):
                       symbol.part_number.x,
                       symbol.part_number.y))
 
-    d.save_svg(f"{filename}.svg")
+    if filename:
+        d.save_svg(f"{filename}.svg")
+    return d.as_svg()

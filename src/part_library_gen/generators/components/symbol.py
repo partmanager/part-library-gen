@@ -22,3 +22,9 @@ class Symbol:
             'width': self.width,
             'height': self.height
         }
+
+    def form_dict(self, data):
+        self.part_number.from_dict(data['part_number'])
+        self.designator.from_dict(data['designator'])
+        self.width = data['width']
+        self.height = data['height']

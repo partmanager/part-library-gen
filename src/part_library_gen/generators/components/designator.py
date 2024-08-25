@@ -10,3 +10,8 @@ class Designator:
             'x': self.x,
             'y': self.y
         }
+
+    def from_dict(self, designator_dict):
+        self.designator = designator_dict['designator']
+        self.x = designator_dict['x']
+        self.y = designator_dict['y']

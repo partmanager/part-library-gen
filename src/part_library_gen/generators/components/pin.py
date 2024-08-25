@@ -25,3 +25,15 @@ class Pin:
             'length': self.length,
             'rotation': self.rotation
         }
+
+    def from_dict(self, data):
+        self.name = data['name']
+        self.name_visible = data['name_visible']
+        self.number = data['number']
+        self.number_visible = data['number_visible']
+        self.function = data['function']
+        self.description = data['description']
+        self.x = data['x']
+        self.y = data['y']
+        self.length = data['length']
+        self.rotation = data['rotation']

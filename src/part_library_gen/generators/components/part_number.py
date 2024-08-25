@@ -10,3 +10,8 @@ class PartNumber:
             'x': self.x,
             'y': self.y
         }
+
+    def from_dict(self, part_number_dict):
+        self.text = part_number_dict['text']
+        self.x = part_number_dict['x']
+        self.y = part_number_dict['y']
