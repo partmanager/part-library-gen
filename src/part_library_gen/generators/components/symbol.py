@@ -1,4 +1,4 @@
-class Symbol:
+class Part:
     def __init__(self, part_number, designator):
         self.part_number = part_number
         self.designator = designator
@@ -28,3 +28,24 @@ class Symbol:
         self.designator.from_dict(data['designator'])
         self.width = data['width']
         self.height = data['height']
+
+
+class Symbol:
+    def __init__(self, part_number: str, designator: str):
+        self.part_number = part_number
+        self.designator = designator
+        self.parts = []
+
+    def add_part(self, part):
+        self.parts.append(part)
+
+    def to_dict(self):
+        return {
+            'part_number': self.part_number,
+            'designator': self.designator,
+            'parts': [x.to_dict() for x in self.parts]
+        }
+
+    def form_dict(self, data):
+        self.part_number = data['part_number']
+        self.designator = data['designator']

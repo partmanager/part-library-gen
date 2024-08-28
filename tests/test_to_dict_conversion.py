@@ -26,4 +26,6 @@ class TestRectangularComponentGenerator(unittest.TestCase):
         }
         generated_symbol = rectangular_symbol_generator(symbol_dict, generator_data)
         symbol_dict = generated_symbol.to_dict()
-        self.assertEqual(symbol_dict['part_number'], {'text': 'Test Part Name', 'x': -100.0, 'y': 190.0})
+        self.assertEqual(symbol_dict['part_number'], 'Test Part Name')
+        self.assertEqual(symbol_dict['designator'], 'U?')
+        self.assertEqual(len(symbol_dict['parts']), 1)

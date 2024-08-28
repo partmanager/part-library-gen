@@ -2,7 +2,7 @@ from .components.designator import Designator
 from .components.part_number import PartNumber
 from .components.pin import Pin
 from .components.rectangle import Rectangle
-from .components.symbol import Symbol
+from .components.symbol import Symbol, Part
 
 
 pin_spacing = 50
@@ -37,17 +37,20 @@ def rectangular_symbol_generator(component_data, generator_data):
     height = calculate_height(generator_data)
     width = calculate_width(generator_data)
 
-    symbol.width = width + 2 * 100 + 40
-    symbol.height = height + + 120
+    # symbol.width = width + 2 * 100 + 40
+    # symbol.height = height + + 120
 
     body_x = -width/2
     body_y = -height/2
 
-    symbol.designator = Designator(designator=component_data['designator'], x=body_x, y=body_y - 10)
-    symbol.part_number = PartNumber(text=component_data['part'], x=body_x, y=body_y + height + 40)
-    symbol.add_body(Rectangle(width=width, height=height, x=body_x, y=body_y))
+    part = Part(PartNumber(text=component_data['part'], x=body_x, y=body_y + height + 40),
+                Designator(designator=component_data['designator'], x=body_x, y=body_y - 10))
+    part.width = width + 2 * 100 + 40
+    part.height = height + + 120
+    part.add_body(Rectangle(width=width, height=height, x=body_x, y=body_y))
+    add_pins(part, component_data, generator_data, width, body_y)
 
-    add_pins(symbol, component_data, generator_data, width, body_y)
+    symbol.add_part(part)
 
     return symbol
 

@@ -1,4 +1,5 @@
 from .generators.default_generator import default_generator
+from .generators.multipart_generator import multipart_generator
 from .generators.generator_map import generator_map
 from .exporters.svg.svg_exporter import export as svg_exporter
 
@@ -47,8 +48,12 @@ def generate(data):
         for generator in data['symbol_generator']:
             generator_data = data['symbol_generator'][generator]
             filename = generate_file_name(data, generator)
-            symbol = generator_map[generator](data, generator_data)
-            symbols.append((symbol, filename))
+            if generator == "multipart":
+                symbol = multipart_generator(data, generator_data)
+                symbols.append((symbol, filename))
+            else:
+                symbol = generator_map[generator](data, generator_data)
+                symbols.append((symbol, filename))
         return symbols
 
 

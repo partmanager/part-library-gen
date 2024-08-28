@@ -8,41 +8,47 @@ from ...generators.components.lines import Lines
 
 
 def export(symbol, filename=None):
-    d = svg.Drawing(symbol.width, symbol.height, origin='center')
+    parts_svg = []
+    for i, part in enumerate(symbol.parts):
+        d = svg.Drawing(part.width, part.height, origin='center')
 
-    for element in symbol.body:
-        if isinstance(element, Rectangle):
-            d.append(svg.Rectangle(element.x,
-                                   element.y,
-                                   element.width,
-                                   element.height,
-                                   stroke_width=3,
+        for element in part.body:
+            if isinstance(element, Rectangle):
+                d.append(svg.Rectangle(element.x,
+                                       element.y,
+                                       element.width,
+                                       element.height,
+                                       stroke_width=3,
+                                       fill='yellow',
+                                       stroke='black'))
+            if isinstance(element, Lines):
+                points = [element.x, element.y]
+                for point in element.points:
+                    points += list(point)
+                d.append(svg.Lines(*points,
+                                   stroke_width=4,
                                    fill='yellow',
                                    stroke='black'))
-        if isinstance(element, Lines):
-            points = [element.x, element.y]
-            for point in element.points:
-                points += list(point)
-            d.append(svg.Lines(*points,
-                               stroke_width=4,
-                               fill='yellow',
-                               stroke='black'))
-        if isinstance(element, Line):
-            d.append(svg.Line(element.x1, element.y1, element.x2, element.y2, stroke_width=4, stroke='black'))
+            if isinstance(element, Line):
+                d.append(svg.Line(element.x1, element.y1, element.x2, element.y2, stroke_width=4, stroke='black'))
 
-    for pin in symbol.pins:
-        d.append(generate_symbol_pin(pin))
+        for pin in part.pins:
+            d.append(generate_symbol_pin(pin))
 
-    d.append(svg.Text(symbol.designator.designator,
-                      40,
-                      symbol.designator.x,
-                      symbol.designator.y))
+        d.append(svg.Text(part.designator.designator,
+                          40,
+                          part.designator.x,
+                          part.designator.y))
 
-    d.append(svg.Text(symbol.part_number.text,
-                      40,
-                      symbol.part_number.x,
-                      symbol.part_number.y))
+        d.append(svg.Text(part.part_number.text,
+                          40,
+                          part.part_number.x,
+                          part.part_number.y))
 
-    if filename:
-        d.save_svg(f"{filename}.svg")
-    return d.as_svg()
+        if filename:
+            if len(symbol.parts) > 1:
+                d.save_svg(f"{filename}_{i}.svg")
+            else:
+                d.save_svg(f"{filename}.svg")
+        parts_svg.append(d.as_svg())
+    return parts_svg

@@ -1,7 +1,7 @@
 import json
 
 from pathlib import Path
-from src.part_library_gen.symbol_generator import generate
+from src.part_library_gen.symbol_generator import generate, svg_exporter
 
 
 def load_files(directory):
@@ -14,7 +14,10 @@ def generate_schematic_symbols(files):
         with open(file, 'r') as f:
             data = json.load(f)
             for part in data:
-                generate(part)
+                generated_symbol = generate(part)
+                for gs in generated_symbol:
+                    symbol, filename = gs
+                    svg_exporter(symbol, filename)
 
 
 if __name__ == "__main__":

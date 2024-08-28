@@ -1,4 +1,4 @@
-from .components.symbol import Symbol
+from .components.symbol import Symbol, Part
 from .components.designator import Designator
 from .components.part_number import PartNumber
 from .components.pin import Pin
@@ -13,27 +13,29 @@ def opamp_generator(component_data, generator_data):
 
     height = default_style.pin_spacing * 4
     width = default_style.pin_spacing * 5
-    symbol.width = width + 2 * 100 + 40
-    symbol.height = height + 120
+    #symbol.width = width + 2 * 100 + 40
+    #symbol.height = height + 120
 
     body_x = -width / 2
     body_y = -height / 2
-    symbol.designator = Designator(designator=component_data['designator'], x=-50, y=body_y - 10)
-    symbol.part_number = PartNumber(text=component_data['part'], x=-50, y=body_y + height + 40)
+    part = Part(PartNumber(text=component_data['part'], x=-50, y=body_y + height + 40),
+                Designator(designator=component_data['designator'], x=-50, y=body_y - 10))
+    part.width = width + 2 * 100 + 40
+    part.height = height + 120
 
     # draw triangle body
     triangle = Lines(default_style.pin_spacing * 3, 0)
     triangle.add_point(0, default_style.pin_spacing * 2)
     triangle.add_point(0, default_style.pin_spacing * -2)
     triangle.add_point(default_style.pin_spacing * 3, 0)
-    symbol.add_body(triangle)
+    part.add_body(triangle)
     # draw '+' and '-' inside body
     plus1 = Line(x1=10, y1=default_style.pin_spacing, x2=30, y2=default_style.pin_spacing)
     plus2 = Line(x1=10 + 10, y1=default_style.pin_spacing + 10, x2=10 + 10, y2=default_style.pin_spacing - 10)
     minus = Line(x1=10, y1=default_style.pin_spacing * -1, x2=30, y2=default_style.pin_spacing * -1)
-    symbol.add_body(plus1)
-    symbol.add_body(plus2)
-    symbol.add_body(minus)
+    part.add_body(plus1)
+    part.add_body(plus2)
+    part.add_body(minus)
 
     pins = find_pins(component_data)
     # add positive pin
@@ -47,7 +49,7 @@ def opamp_generator(component_data, generator_data):
                   length=default_style.pin_length,
                   rotation=0,
                   name_visible=False)
-    symbol.add_pin(pos_pin)
+    part.add_pin(pos_pin)
 
     # add negative pin
     neg_pin_dict = component_data['pins'][pins['neg']]
@@ -60,7 +62,7 @@ def opamp_generator(component_data, generator_data):
                   length=default_style.pin_length,
                   rotation=0,
                   name_visible=False)
-    symbol.add_pin(neg_pin)
+    part.add_pin(neg_pin)
 
     # add output pin
     out_pin_dict = component_data['pins'][pins['out']]
@@ -73,7 +75,7 @@ def opamp_generator(component_data, generator_data):
                   length=default_style.pin_length,
                   rotation=0,
                   name_visible=False)
-    symbol.add_pin(out_pin)
+    part.add_pin(out_pin)
 
     if 'pwr_pos' in pins and 'pwr_neg' in pins:
         # add power pins
@@ -87,7 +89,7 @@ def opamp_generator(component_data, generator_data):
                           length=default_style.pin_length - 16,
                           rotation=90,
                           name_visible=False)
-        symbol.add_pin(pwr_pos_pin)
+        part.add_pin(pwr_pos_pin)
 
         # add negative power pin
         pwr_neg_pin_dict = component_data['pins'][pins['pwr_neg']]
@@ -100,8 +102,9 @@ def opamp_generator(component_data, generator_data):
                           length=default_style.pin_length - 16,
                           rotation=270,
                           name_visible=False)
-        symbol.add_pin(pwr_neg_pin)
+        part.add_pin(pwr_neg_pin)
 
+    symbol.add_part(part)
     return symbol
 
 
