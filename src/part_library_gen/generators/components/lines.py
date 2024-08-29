@@ -10,7 +10,7 @@ class Lines:
 
     def to_dict(self):
         return {
-            self.x: self.x,
-            self.y: self.y,
-            self.points: self.points
+            'x': self.x,
+            'y': self.y,
+            'points': self.points
         }

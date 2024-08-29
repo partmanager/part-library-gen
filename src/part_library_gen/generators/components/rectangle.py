@@ -7,8 +7,8 @@ class Rectangle:
 
     def to_dict(self):
         return {
-            self.width: self.width,
-            self.height: self.height,
-            self.x: self.x,
-            self.y: self.y
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
         }
