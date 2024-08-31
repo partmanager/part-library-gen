@@ -15,6 +15,5 @@ def multipart_generator(component_data, generator_data):
             "pins": {key: component_data['pins'][key] for key in generator_data[part]['pins']}
         }
         generated_symbol = generator_map[part_generator_name](symbol_dict, part_generator_data)
-        print(generated_symbol)
         symbol.add_part(generated_symbol.parts[0])
     return symbol

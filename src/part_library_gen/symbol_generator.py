@@ -1,3 +1,4 @@
+import hashlib
 from .generators.default_generator import default_generator
 from .generators.multipart_generator import multipart_generator
 from .generators.generator_map import generator_map
@@ -33,8 +34,10 @@ def validate(component_data):
 
 def generate_file_name(component_data, generator_name):
     manufacturer_name = component_data['manufacturer'].replace(' ', '_')
-    part = component_data['part'].replace('#', '')
-    return f"{manufacturer_name}_{part}_{generator_name}"
+    part = component_data['part'].replace('#', '').replace(' ', '_')
+    pins = '_'.join(component_data['pins'].keys())
+    hash_hex = hashlib.sha256(pins.encode()).hexdigest()
+    return f"{manufacturer_name}_{part}_{generator_name}_{hash_hex}"
 
 
 def generate(data):

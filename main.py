@@ -17,7 +17,7 @@ def generate_schematic_symbols(files):
                 generated_symbol = generate(part)
                 for gs in generated_symbol:
                     symbol, filename = gs
-                    svg_exporter(symbol, filename)
+                    svg_exporter(symbol, 'symbols/' + filename)
 
 
 if __name__ == "__main__":
