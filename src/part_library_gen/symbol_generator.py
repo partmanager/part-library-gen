@@ -5,6 +5,7 @@ from .generators.generator_map import generator_map
 from .exporters.svg.svg_exporter import export as svg_exporter
 
 supported_pin_functions = ['In', 'Out', 'InAnalog', 'InDigital', 'InDigital;ActiveLow', 'InDigital;ActiveHigh',
+                           'InDigitalClock',
                            'OutDigital', 'OutDigital;ActiveLow', 'OutDigital;OpenDrain',
                            'OutDigital;OpenDrain;ActiveLow',
                            'OutAnalog', 'OutAnalog;ActiveLow',
