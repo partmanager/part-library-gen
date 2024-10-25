@@ -15,14 +15,14 @@ class Parameters:
 
 
 def generate(parameters, name):
-    row_spacing = Decimal(parameters['E']) + 2 * Decimal(parameters['b']) - Decimal(parameters['L'])
-    overlay_d = Decimal(parameters['D'])
-    overlay_e = Decimal(parameters['E']) - Decimal(parameters['L']) - Decimal('0.5')
+    row_spacing = parameters.E.typ + 2 * parameters.b.typ - parameters.L.typ
+    overlay_d = parameters.D.typ
+    overlay_e = parameters.E.typ - parameters.L.typ - Decimal('0.5')
     parameters = Parameters(20,
-                            pin_pitch=Decimal(parameters['e']),
-                            pad_width=Decimal(parameters['L']),
-                            pad_height=Decimal(parameters['b']) + Decimal('0.06'),
-                            pad_row_spacing=Decimal(parameters['L']) + 2*Decimal(parameters['b'])-Decimal(parameters['L']))
+                            pin_pitch=parameters.e.typ,
+                            pad_width=parameters.L.typ,
+                            pad_height=parameters.b.typ + Decimal('0.06'),
+                            pad_row_spacing=parameters.L.typ + 2*parameters.b.typ-parameters.L.typ)
 
     pin_count_per_side = int(parameters.pin_count / 2)
     first_pad_y = pin_count_per_side * parameters.pin_pitch / 2
