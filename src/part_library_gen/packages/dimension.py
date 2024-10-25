@@ -7,6 +7,14 @@ class Dimension:
         self.min_ = min_
         self.max_ = max_
 
+    def get_available_max(self):
+        if self.max_:
+            return self.max_
+        if self.typ:
+            return self.typ
+        if self.min_:
+            return self.min_
+
     @staticmethod
     def from_str(str_dimension):
         dim = Dimension(None, None, None)
