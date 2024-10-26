@@ -1,10 +1,12 @@
 from .generators.footprint_generator.tssop import generate as generate_tssop
+from .generators.footprint_generator.vssop import generate as generate_vssop
 from .packages.tssop import TSSOP
 from .packages.dimension import Dimension
 
 
 generator_map = {
     "TSSOP": (generate_tssop, TSSOP),
+    "VSSOP": (generate_vssop, TSSOP)
 }
 
 
