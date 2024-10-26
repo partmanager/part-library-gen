@@ -16,10 +16,10 @@ class Parameters:
 
 
 def generate(package_parameters, name):
-    row_spacing = package_parameters.E.typ + 2 * package_parameters.b.get_available_max() - package_parameters.L.get_available_max()
+    row_spacing = package_parameters.E.get_available_max() + 2 * package_parameters.b.get_available_max() - package_parameters.L.get_available_max()
     overlay_d = package_parameters.D.get_available_max()
     overlay_e = package_parameters.E.get_available_max() - package_parameters.L.get_available_max() - Decimal('0.5')
-    parameters = Parameters(20,
+    parameters = Parameters(pin_count=package_parameters.pin_count,
                             pin_pitch=package_parameters.e.get_available_max(),
                             pad_width=package_parameters.L.get_available_max(),
                             pad_height=package_parameters.b.get_available_max() + Decimal('0.06'),
@@ -28,14 +28,14 @@ def generate(package_parameters, name):
     pin_count_per_side = int(parameters.pin_count / 2)
     first_pad_y = (pin_count_per_side - 1) * parameters.pin_pitch / 2
     left_pads = add_vertical_pads(first=1,
-                                  last=10,
+                                  last=pin_count_per_side,
                                   pitch=parameters.pin_pitch,
                                   width=parameters.pad_width,
                                   height=parameters.pad_height,
                                   x=row_spacing / -2,
                                   y_offset=first_pad_y)
-    right_pads = add_vertical_pads(first=20,
-                                   last=11,
+    right_pads = add_vertical_pads(first=parameters.pin_count,
+                                   last=pin_count_per_side + 1,
                                    pitch=parameters.pin_pitch,
                                    width=parameters.pad_width,
                                    height=parameters.pad_height,
