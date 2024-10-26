@@ -8,6 +8,7 @@ class Footprint:
         self.pads = []
         self.top_overlay = []
         self.bottom_overlay = []
+        self.assembly_top = []
 
     def add_pad(self, pad):
         if isinstance(pad, list):

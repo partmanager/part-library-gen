@@ -12,3 +12,11 @@ def draw_lines(lines, close, style):
     return svg.Lines(*points,
                      close=close,
                      **style)
+
+
+def draw_rectangle(rectangle, style):
+    return svg.Rectangle(rectangle.x,
+                         rectangle.y * -1,
+                         rectangle.width,
+                         rectangle.height,
+                         **style)

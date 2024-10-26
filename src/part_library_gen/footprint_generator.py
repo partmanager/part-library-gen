@@ -13,7 +13,8 @@ def generate(data):
     generator = generator_map[generator_name][0]
     if not isinstance(data["data"], generator_map[generator_name][1]):
         data["data"] = parse_data(data["data"], generator_map[generator_name][1])
-    return generator(data["data"], f"{generator_name}-{data["data"].pin_count}")
+    footprint_name = f"{generator_name}-{data["data"].pin_count}"
+    return generator(data["data"], footprint_name), footprint_name
 
 
 def parse_data(data, parameters_class):
