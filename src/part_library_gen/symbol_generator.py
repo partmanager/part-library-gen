@@ -1,7 +1,7 @@
 import hashlib
-from src.part_library_gen.generators.symbol_generator.default_generator import default_generator
-from src.part_library_gen.generators.symbol_generator.multipart_generator import multipart_generator
-from src.part_library_gen.generators.symbol_generator.generator_map import generator_map
+from .generators.symbol_generator.default_generator import default_generator
+from .generators.symbol_generator.multipart_generator import multipart_generator
+from .generators.symbol_generator.generator_map import generator_map
 from .exporters.svg.svg_exporter import export as svg_exporter
 
 supported_pin_functions = ['In', 'Out', 'InAnalog', 'InDigital', 'InDigital;ActiveLow', 'InDigital;ActiveHigh',
