@@ -1,5 +1,5 @@
 import unittest
-from src.part_library_gen.generators.rectangular_symbol_generator import rectangular_symbol_generator
+from src.part_library_gen.generators.symbol_generator.rectangular_symbol_generator import rectangular_symbol_generator
 
 
 class TestRectangularComponentGenerator(unittest.TestCase):

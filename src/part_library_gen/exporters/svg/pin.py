@@ -50,6 +50,7 @@ marker_map = {"In": in_arrow,
               "PwrIn": None,
               "PwrOut": None,
               "PwrGND": None,
+              "PwrInOut": None,
               "NC": None,
               "NC-GND": None,
               "NC-Float": None

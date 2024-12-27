@@ -1,4 +1,4 @@
-from .components.symbol import Symbol
+from src.part_library_gen.generators.components.symbol import Symbol
 from .generator_map import generator_map
 
 

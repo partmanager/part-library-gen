@@ -1,10 +1,10 @@
-from .components.symbol import Symbol, Part
-from .components.designator import Designator
-from .components.part_number import PartNumber
-from .components.pin import Pin
-from .components.line import Line
-from .components.lines import Lines
-from .styles import default_style
+from src.part_library_gen.generators.components.symbol import Symbol, Part
+from src.part_library_gen.generators.components.designator import Designator
+from src.part_library_gen.generators.components.part_number import PartNumber
+from src.part_library_gen.generators.components.pin import Pin
+from src.part_library_gen.generators.components.line import Line
+from src.part_library_gen.generators.components.lines import Lines
+from src.part_library_gen.styles import default_style
 
 
 def opamp_generator(component_data, generator_data):

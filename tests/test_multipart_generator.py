@@ -1,6 +1,6 @@
 import unittest
 import json
-from src.part_library_gen.generators.multipart_generator import multipart_generator
+from src.part_library_gen.generators.symbol_generator.multipart_generator import multipart_generator
 
 
 class TestRectangularComponentGenerator(unittest.TestCase):
