@@ -21,3 +21,23 @@ class Footprint:
             self.top_overlay += overlay
         else:
             self.top_overlay.append(overlay)
+
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'width': self.width,
+            'height': self.height,
+            'pads': [x.to_dict() for x in self.pads],
+            'top_overlay': [x.to_dict() for x in self.top_overlay],
+            'bottom_overlay': [x.to_dict() for x in self.bottom_overlay],
+            'assembly_top': [x.to_dict() for x in self.assembly_top]
+        }
+
+    def form_dict(self, data):
+        self.name = data['part_number']
+        self.width = data['width']
+        self.height = data['height']
+        self.pads = data['pads']
+        self.top_overlay = data['top_overlay']
+        self.bottom_overlay = data['bottom_overlay']
+        self.assembly_top = data['assembly_top']

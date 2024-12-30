@@ -14,3 +14,12 @@ class Pad:
 
     def __repr__(self):
         return self.__str__()
+
+    def to_dict(self):
+        return {
+            "number": self.number,
+            "x": self.x,
+            "y": self.y,
+            "width": self.width,
+            "height": self.height
+        }
